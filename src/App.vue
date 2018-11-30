@@ -16,19 +16,23 @@
       <!-- Header -->
       <Header />
 
-      <b-container fluid>
-        <b-row>
-          <b-col lg="3" class="mb-4">
-            <b-button :class="{ 'w-100': true, 'd-none': !isAuthorized, 'd-sm-block d-md-block d-lg-none d-xl-none': isAuthorized, 'mb-4': showSidebar }" @click="showSidebar = !showSidebar">
-              <i :class="{ 'fa': true, 'fa-bars': !showSidebar, 'fa-times': showSidebar }" /> Menu
-            </b-button>
-            <Sidebar :class="{ 'd-none': !showSidebar && isAuthorized, 'd-sm-none': !showSidebar && isAuthorized, 'd-md-none': !showSidebar && isAuthorized, 'd-lg-block': true, 'd-xl-block': true }" />
-          </b-col>
-          <b-col lg="9">
-            <router-view></router-view>
-          </b-col>
-        </b-row>
-      </b-container>
+      <div class="app-canvas">
+        <div class="grid-row">
+          <div class="col-12 col-md-3 col-lg-2 mb-4">
+            <div class="p-3 px-lg-xl">
+              <b-button :class="{ 'w-100': true, 'd-none': !isAuthorized, 'd-sm-block d-md-block d-lg-none d-xl-none': isAuthorized, 'mb-4': showSidebar }" @click="showSidebar = !showSidebar">
+                <i :class="{ 'fa': true, 'fa-bars': !showSidebar, 'fa-times': showSidebar }" /> Menu
+              </b-button>
+              <Sidebar :class="{ 'd-none': !showSidebar && isAuthorized, 'd-sm-none': !showSidebar && isAuthorized, 'd-md-none': !showSidebar && isAuthorized, 'd-lg-block': true, 'd-xl-block': true }" />
+            </div>
+          </div>
+          <div class="col-12 col-md-9 col-lg-10 bg-white pb-xl">
+            <div class="p-3 px-lg-xl">
+              <router-view></router-view>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Waiting for MusicKit -->
     <div id="app" v-else>
@@ -53,13 +57,7 @@
     <b-container fluid>
       <b-row>
         <b-col class="text-muted text-center text-sm mb-4 mt-2">
-          <p class="mb-1 pb-0">Copyright &copy; 2018 &mdash; <a href="https://zacharyseguin.ca" target="_blank">Zachary Seguin</a></p>
-          <p>Apple and Apple Music are trademarks of Apple Inc., registered in the U.S. and other countries</p>
-          <p>
-            If you encounter any issues, have any feedback or feature requests,
-            please <a href="https://github.com/zachomedia/apple-music-webplayer/issues" target="_blank">submit an issue on GitHub</a>
-            or send an email to <a href="mailto:contact@zacharyseguin.ca" target="_blank">contact@zacharyseguin.ca</a>.
-          </p>
+
         </b-col>
       </b-row>
     </b-container>
@@ -495,10 +493,7 @@ export default {
 </script>
 
 <style>
-#app {
-  font-size: 0.9rem;
-  padding-top: 100px;
-}
+
 </style>
 
 <style scoped>
@@ -515,15 +510,9 @@ export default {
 </style>
 
 <style lang="scss">
-body {
-  font-family: sans-serif;
-}
+@import "assets/_ui.scss";
 
 body.light {
-  // Default light mode
-  @import "assets/_custom.scss";
-  @import "~bootstrap/scss/bootstrap.scss";
-  @use '~bootstrap-vue/dist/bootstrap-vue';
 
   background: $body-bg;
   color: $body-color;
@@ -531,11 +520,6 @@ body.light {
 
 // Colours for dark mode
 body.dark {
-  @import "assets/_custom.dark.scss";
-  @import "~bootswatch/dist/darkly/variables";
-  @import "~bootstrap/scss/bootstrap.scss";
-  @use '~bootstrap-vue/dist/bootstrap-vue';
-
   background: $body-bg;
   color: $body-color;
 }

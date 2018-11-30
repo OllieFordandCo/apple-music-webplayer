@@ -1,7 +1,7 @@
 
 <template>
-  <div class="now-playing">
-     <div class="info">
+  <div class="now-playing cf">
+     <div class="info p-1 float-left">
          <img v-if="nowPlayingItem && nowPlayingItem.attributes.artwork"
               :src="nowPlayingItem.attributes.artwork | formatArtworkURL" />
          <div v-else class="placeholder" />
@@ -9,7 +9,7 @@
          <div class="main" v-if="nowPlayingItem">
             <span class="title">
               {{ nowPlayingItem.attributes.name }}
-              <b-dropdown variant="link" size="sm" no-caret boundary="viewport" v-if="isAuthorized">
+              <div class="d-none" size="sm" no-caret boundary="viewport" v-if="isAuthorized">
                 <template slot="button-content">
                   <i class="fa fa-ellipsis-h" /><span class="sr-only">Song actions</span>
                 </template>
@@ -19,7 +19,7 @@
                 <b-dropdown-divider />
                 <b-dropdown-item-button @click.stop="rateSong(nowPlayingItem, 1)">Love</b-dropdown-item-button>
                 <b-dropdown-item-button @click.stop="rateSong(nowPlayingItem, -1)">Dislike</b-dropdown-item-button>
-              </b-dropdown>
+              </div>
             </span>
             <span class="artist text-muted">{{ nowPlayingItem.attributes.artistName }} &mdash; {{ nowPlayingItem.attributes.albumName }}</span>
          </div>
@@ -28,11 +28,7 @@
             <span class="artist text-muted">Select a song, album or playlist to play.</span>
          </div>
 
-         <div class="right">
-            <span>{{ playbackTime.currentPlaybackTime | formatSeconds }} / {{ playbackTime.currentPlaybackDuration | formatSeconds }}</span>
-         </div>
-
-         <div class="queue">
+         <div class="queue d-none">
            <b-button variant="link" @click="showQueue = !showQueue"><i class="fa fa-list-ul" /></b-button>
            <b-modal v-model="showQueue" title="Queue" centered hide-footer>
               <b-form-radio-group v-model="queueTab"
@@ -72,12 +68,21 @@
            </b-modal>
         </div>
       </div>
+      <!-- Controls -->
+      <div class="controls">
+          <MediaControls />
+      </div>
+      <div class="progress-container">
 
+          <div class="right">
+              <span>{{ playbackTime.currentPlaybackTime | formatSeconds }} / {{ playbackTime.currentPlaybackDuration | formatSeconds }}</span>
+          </div>
       <div ref="progressTooltip" class="progressTooltip">{{ hoverTooltipTime | formatSeconds }}</div>
 
       <b-progress ref="songProgress" class="songProgress" height="4px" :value="playbackTime.currentPlaybackTime / playbackTime.currentPlaybackDuration * 100"
         v-if="playbackTime.currentPlaybackDuration > 0" v-b-tooltip.hover @click.native="seekToTime($event)"
         @mousemove.native="getHoverTime($event)" @mouseover.native="showTooltip()" @mouseleave.native="hideTooltip()"></b-progress>
+    </div>
   </div>
 </template>
 
@@ -85,11 +90,12 @@
 import EventBus from '../event-bus';
 import Raven from 'raven-js';
 import LazyImg from './LazyImg';
+import MediaControls from '../components/MediaControls.vue';
 import {formatArtworkURL, formatMillis, formatSeconds, rateSong} from '../utils';
 
 export default {
   name: 'NowPlaying',
-  components: {LazyImg},
+  components: {MediaControls,LazyImg},
   data: function () {
     let musicKit = window.MusicKit.getInstance();
 
@@ -227,16 +233,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "../assets/variables";
 .now-playing {
-  border: 1px solid #e3e3e3;
-  background: white;
-  padding: 0px;
-  border-radius: 4px;
   position: relative;
-}
-.dark .now-playing {
-  border-color: #444;
-  background: #222;
+  color: #fff;
 }
 
 .now-playing .info {
@@ -271,20 +271,29 @@ export default {
   font-weight: bold;
 }
 
+.progress-container {
+    float: left;
+    min-width: calc(100vw - 500px);
+}
+
 .title {
   display: block;
   font-size: 1.2em;
+    font-weight: 400;
 }
 
 .artist {
   display: block;
+    font-weight: 100;
 }
 
 .placeholder {
   display: block;
   width: 60px;
   height: 60px;
+  border-radius: $default-border-radius;
   margin-right: 10px;
+  font-size: .3em;
   background: #f2f2f2;
 }
 
@@ -341,5 +350,6 @@ export default {
   .grow-1 {
     flex-grow: 1;
   }
+
 }
 </style>

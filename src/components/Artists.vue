@@ -44,5 +44,4 @@ export default {
   margin: 5px;
   font-size: 0.9em;
 }
-
 </style>

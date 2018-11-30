@@ -1,9 +1,7 @@
-body {
+.no-js body {
    background: #eee;
-   font-family: sans-serif;
  }
-
- .splash {
+ .no-js .splash {
    width: 90%;
    max-width: 400px;
    margin: 100px auto;

@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "serve": "npm run dev",
+    "generate": "node private/musickit-token-encoder.js",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
@@ -19,6 +20,7 @@
     "font-awesome": "^4.7.0",
     "glob": "^7.1.3",
     "intersection-observer": "^0.5.1",
+    "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.11",
     "loose-envify": "^1.4.0",
     "popper.js": "^1.14.4",
@@ -78,7 +80,10 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.11.3",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "bourbon-neat": "2.1.0",
+    "indigo": "https://madila:a0ed0fe21f71f47bec13d6cf6070ec5ff903f18b@github.com/OllieFordandCo/indigo#master",
+    "mikado": "git://github.com/OllieFordandCo/mikado.git#master"
   },
   "engines": {
     "node": ">= 6.0.0",

@@ -1,23 +1,23 @@
 
 <template>
   <div>
-    <b-button-group>
-      <b-button variant="link" v-on:click="prev()" :disabled="[states.none].indexOf(state) !== -1">
+    <div class="button-group">
+      <button class="btn p-1 main" v-on:click="prev()" :disabled="[states.none].indexOf(state) !== -1">
         <i class="fa fa-backward" />
-      </b-button>
-      <b-button variant="link" class="main" v-if="[states.loading, states.waiting, states.seeking].indexOf(state) !== -1" disabled>
+      </button>
+      <button class="btn p-1 main" v-if="[states.loading, states.waiting, states.seeking].indexOf(state) !== -1" disabled>
         <i class="fa fa-circle-o-notch fa-spin" />
-      </b-button>
-      <b-button variant="link" class="main" v-on:click="play()" v-else-if="[states.paused, states.stopped, states.none].indexOf(state) !== -1" :disabled="[states.none].indexOf(state) !== -1">
+      </button>
+      <button class="btn p-1 main" v-on:click="play()" v-else-if="[states.paused, states.stopped, states.none].indexOf(state) !== -1" :disabled="[states.none].indexOf(state) !== -1">
         <i class="fa fa-play" />
-      </b-button>
-      <b-button variant="link" class="main" v-on:click="pause()" v-else>
+      </button>
+      <button class="btn p-1 main" v-on:click="pause()" v-else>
         <i class="fa fa-pause" />
-      </b-button>
-      <b-button variant="link" v-on:click="next()" :disabled="[states.none].indexOf(state) !== -1">
+      </button>
+      <button class="btn p-1 main" v-on:click="next()" :disabled="[states.none].indexOf(state) !== -1">
         <i class="fa fa-forward" />
-      </b-button>
-    </b-button-group>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -72,5 +72,9 @@ button {
 
 .main {
   font-size: 1.8em;
+}
+.btn {
+  font-size: 1rem;
+  border: 0;
 }
 </style>

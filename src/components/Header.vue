@@ -1,12 +1,9 @@
 <template>
-  <div class="header container-fluid">
-    <div align-self="center" class="logo pull-left pl-2">
-      <router-link :to="{ name: 'index' }"><img src="../assets/icon.svg" alt="Zachary Seguin" /></router-link>
-    </div>
-    <!-- Controls -->
-    <div class="controls">
-      <MediaControls />
-    </div>
+  <div class="mini-player">
+    <!--
+    <div align-self="center" class="logo float-left">
+      <router-link :to="{ name: 'index' }">MS</router-link>
+    </div>-->
     <div class="now-playing">
       <NowPlaying />
     </div>
@@ -15,28 +12,28 @@
 
 <script>
 // Import custom controls
-import MediaControls from '../components/MediaControls.vue';
 import NowPlaying from '../components/NowPlaying.vue';
 
 export default {
   name: 'Header',
   components: {
-    MediaControls,
     NowPlaying
   }
 };
 </script>
 
 <style scoped lang="scss">
-.header {
+  @import "../assets/variables";
+
+.mini-player {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
+  bottom: 0;
   z-index: 100;
   height: 80px;
   font-size: 0.9em;
-  padding: 8px 5px;
+  padding: $spacer 0;
   background: #f8f8f8;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
 
@@ -46,19 +43,19 @@ export default {
   justify-content: space-between;
 }
 .dark {
-  .header {
-    background: #333;
+  .mini-player {
+    background: rgba(30, 30, 30,0.8);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
   }
 
- .logo img {
-    box-shadow: 0px 0px 1px rgba(100, 100, 100, .5);
+  .logo {
+    font-size: 3rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
   }
-}
 
-.logo img {
-  height: 100%;
-  max-height: 50px;
 }
 
 .now-playing {
