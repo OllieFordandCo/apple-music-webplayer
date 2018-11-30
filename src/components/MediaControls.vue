@@ -67,7 +67,11 @@ button {
 }
 
 .dark button {
-  color: #ccc;
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    color: #fff;
 }
 
 .main {

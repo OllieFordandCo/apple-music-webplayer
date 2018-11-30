@@ -69,7 +69,7 @@
         </div>
       </div>
       <!-- Controls -->
-      <div class="controls">
+      <div class="controls float-left">
           <MediaControls />
       </div>
       <div class="progress-container">

@@ -2,7 +2,7 @@
   "name": "music",
   "version": "1.0.0",
   "description": "Apple Music web player.",
-  "author": "Zachary Seguin",
+  "author": "Ruben Madila",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
